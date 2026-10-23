@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My School | Learn, Grow, Shine</title>
+
+    <style>
+        /* ===== BASIC SETTINGS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f7ff;
+            color: #24324a;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ===== NAVIGATION BAR ===== */
+        header {
+            background: white;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 3px 15px #142c5015;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #2457d6;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            color: #24324a;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3478f6;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 470px;
+            padding: 65px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+            flex-wrap: wrap;
+            color: white;
+            background: linear-gradient(
+                135deg, #173eaa, #3478f6, #62c5ff
+            );
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 28px;
+            max-width: 520px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 260px;
+            max-width: 460px;
+        }
+
+        .hero-image img {
+            display: block;
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px #001b4d55;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            background: #ffda72;
+            color: #173eaa;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* ===== GENERAL SECTIONS ===== */
+        section {
+            padding: 65px 8%;
+            scroll-margin-top: 85px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(27px, 4vw, 36px);
+            color: #2457d6;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #65738b;
+            margin-bottom: 35px;
+        }
+
+        /* ===== SCHOOL STATISTICS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(150px, 1fr)
+            );
+            gap: 18px;
+            margin-top: -35px;
+            position: relative;
+            padding: 0 8%;
+        }
+
+        .stat {
+            background: white;
+            text-align: center;
+            padding: 22px 12px;
+            border-radius: 16px;
+            box-shadow: 0 7px 25px #16356a12;
+        }
+
+        .stat h2 {
+            color: #3478f6;
+            font-size: 29px;
+        }
+
+        .stat p {
+            color: #65738b;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            text-align: center;
+            background: #e8f2ff;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        /* ===== ACADEMIC CARDS ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(210px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 27px 22px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px #142c5010;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 28px #2457d625;
+        }
+
+        .emoji {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #2457d6;
+            margin-bottom: 10px;
+        }
+
+        /* ===== PHOTO GALLERY ===== */
+        .gallery {
+            background: #e8f2ff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(220px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        .gallery-item {
+            background: white;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px #142c5015;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #2457d6;
+        }
+
+        /* ===== TIMETABLE ===== */
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #142c5010;
+        }
+
+        table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px 12px;
+            text-align: center;
+            border: 1px solid #e3eaf5;
+        }
+
+        th {
+            background: #2457d6;
+            color: white;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f0f6ff;
+        }
+
+        tbody tr:hover {
+            background: #dceaff;
+        }
+
+        .break {
+            background: #fff0c9 !important;
+            color: #825400;
+            font-weight: bold;
+        }
+
+        /* ===== SCHOOL NEWS ===== */
+        .news-card {
+            background: white;
+            padding: 23px;
+            border-radius: 15px;
+            border-left: 5px solid #3478f6;
+            box-shadow: 0 5px 20px #142c5010;
+        }
+
+        .news-card h3 {
+            color: #2457d6;
+            margin-bottom: 8px;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            text-align: center;
+            background: #e8f2ff;
+        }
+
+        .contact p {
+            margin: 10px 0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #142747;
+            color: white;
+            padding: 35px 15px;
+            text-align: center;
+        }
+
+        footer h2 {
+            margin-bottom: 8px;
+        }
+
+        footer a {
+            color: #ffda72;
+        }
+
+        footer p {
+            margin: 7px 0;
+        }
+
+        /* ===== MOBILE RESPONSIVE DESIGN ===== */
+        @media (max-width: 650px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                text-align: center;
+                padding: 45px 6%;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                margin: auto;
+            }
+
+            section {
+                padding: 45px 6%;
+            }
+
+            .stats {
+                padding: 0 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <header>
+        <div class="logo">🏫 My School</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#academics">Academics</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#timetable">Timetable</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ===== HOME SECTION ===== -->
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+            <h1>Learn Today,<br>Lead Tomorrow! 🚀</h1>
+
+            <p>
+                Welcome to My School, where young minds
+                explore new ideas, discover their talents,
+                and build a brighter future.
+            </p>
+
+            <a href="#about" class="btn">
+                Explore Our School ✨
+            </a>
+        </div>
+
+        <div class="hero-image">
+            <img
+                src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=80"
+                alt="School building and campus"
+            >
+        </div>
+
+    </section>
+
+    <!-- ===== STATISTICS ===== -->
+    <div class="stats">
+
+        <div class="stat">
+            <h2>📚</h2>
+            <p>Quality Learning</p>
+        </div>
+
+        <div class="stat">
+            <h2>🎨</h2>
+            <p>Creative Activities</p>
+        </div>
+
+        <div class="stat">
+            <h2>⚽</h2>
+            <p>Sports and Games</p>
+        </div>
+
+        <div class="stat">
+            <h2>💡</h2>
+            <p>Bright Ideas</p>
+        </div>
+
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about">
+
+        <h2 class="section-title">
+            Welcome to My School 💙
+        </h2>
+
+        <p class="section-subtitle">
+            A place where every student can shine.
+        </p>
+
+        <p>
+            At My School, we believe learning should be fun,
+            creative, and inspiring. We encourage students
+            to develop knowledge, kindness, teamwork, and
+            confidence. Every day is a new opportunity to
+            learn something amazing!
+        </p>
+
+    </section>
+
+    <!-- ===== ACADEMICS ===== -->
+    <section id="academics">
+
+        <h2 class="section-title">
+            Explore and Learn 📚
+        </h2>
+
+        <p class="section-subtitle">
+            Discover something amazing every day!
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="emoji">🔬</div>
+                <h3>Science</h3>
+                <p>
+                    Explore experiments, nature,
+                    and the wonders of science.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="emoji">💻</div>
+                <h3>Computer Lab</h3>
+                <p>
+                    Learn coding, computers,
+                    and exciting new technology.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="emoji">➗</div>
+                <h3>Mathematics</h3>
+                <p>
+                    Discover numbers, puzzles,
+                    and problem-solving.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="emoji">📖</div>
+                <h3>Library</h3>
+                <p>
+                    Read wonderful stories
+                    and explore new worlds.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===== ACTIVITIES ===== -->
+    <section class="about" id="activities">
+
+        <h2 class="section-title">
+            Learn Beyond Books 🎨
+        </h2>
+
+        <p class="section-subtitle">
+            Discover your talents and have fun!
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="emoji">⚽</div>
+                <h3>Sports</h3>
+                <p>
+                    Stay active, play as a team,
+                    and enjoy every game.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🎭</div>
+                <h3>Arts and Culture</h3>
+                <p>
+                    Express yourself through music,
+                    dance, and painting.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🤖</div>
+                <h3>AI and Robotics</h3>
+                <p>
+                    Explore artificial intelligence
+                    and build creative projects.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===== PHOTO GALLERY ===== -->
+    <section class="gallery" id="gallery">
+
+        <h2 class="section-title">
+            Our School Gallery 📸
+        </h2>
+
+        <p class="section-subtitle">
+            A glimpse of learning, friendship, and fun!
+        </p>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80"
+                    alt="Students learning in a classroom"
+                    loading="lazy"
+                >
+                <div class="gallery-caption">
+                    📚 Classroom Learning
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=700&q=80"
+                    alt="Students participating in activities"
+                    loading="lazy"
+                >
+                <div class="gallery-caption">
+                    🤝 Teamwork
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80"
+                    alt="Teacher helping students learn"
+                    loading="lazy"
+                >
+                <div class="gallery-caption">
+                    👩‍🏫 Learning Together
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img
+                    src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=700&q=80"
+                    alt="Children enjoying an activity"
+                    loading="lazy"
+                >
+                <div class="gallery-caption">
+                    😊 Happy Moments
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===== WEEKLY TIMETABLE ===== -->
+    <section id="timetable">
+
+        <h2 class="section-title">
+            Weekly Class Timetable 🗓️
+        </h2>
+
+        <p class="section-subtitle">
+            Sample timetable — change the subjects
+            and times to match your school.
+        </p>
+
+        <div class="table-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>9:00 - 10:00</td>
+                        <td>English</td>
+                        <td>Maths</td>
+                        <td>Science</td>
+                        <td>English</td>
+                        <td>Maths</td>
+                    </tr>
+
+                    <tr>
+                        <td>10:00 - 11:00</td>
+                        <td>Science</td>
+                        <td>English</td>
+                        <td>Maths</td>
+                        <td>Computer</td>
+                        <td>Science</td>
+                    </tr>
+
+                    <tr class="break">
+                        <td>11:00 - 11:30</td>
+                        <td colspan="5">🍎 Break Time</td>
+                    </tr>
+
+                    <tr>
+                        <td>11:30 - 12:30</td>
+                        <td>History</td>
+                        <td>Computer</td>
+                        <td>English</td>
+                        <td>Maths</td>
+                        <td>Art</td>
+                    </tr>
+
+                    <tr>
+                        <td>12:30 - 1:30</td>
+                        <td>Sports</td>
+                        <td>Geography</td>
+                        <td>Computer</td>
+                        <td>Science</td>
+                        <td>Sports</td>
+                    </tr>
+
+                    <tr class="break">
+                        <td>1:30 - 2:00</td>
+                        <td colspan="5">🍱 Lunch Time</td>
+                    </tr>
+
+                    <tr>
+                        <td>2:00 - 3:00</td>
+                        <td>Art</td>
+                        <td>Sports</td>
+                        <td>Library</td>
+                        <td>Music</td>
+                        <td>Activity</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- ===== SCHOOL NEWS ===== -->
+    <section id="news">
+
+        <h2 class="section-title">
+            School News and Events 📰
+        </h2>
+
+        <p class="section-subtitle">
+            Add your latest school announcements here.
+        </p>
+
+        <div class="cards">
+
+            <div class="news-card">
+                <h3>🎉 Annual Day</h3>
+                <p>
+                    Get ready for a celebration of student
+                    talent, performances, and creativity!
+                </p>
+            </div>
+
+            <div class="news-card">
+                <h3>💻 Coding Club</h3>
+                <p>
+                    Discover programming and create your
+                    own exciting computer projects.
+                </p>
+            </div>
+
+            <div class="news-card">
+                <h3>🌱 Green School</h3>
+                <p>
+                    Help keep our school clean and
+                    protect the environment.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+
+        <h2 class="section-title">
+            Contact Our School 📞
+        </h2>
+
+        <p>
+            Have a question? Contact the school office.
+        </p>
+
+        <p>
+            📧 Email: school@example.com
+        </p>
+
+        <p>
+            📍 Address: Add your school address here
+        </p>
+
+        <p>
+            🕒 Office Hours: Monday to Friday
+        </p>
+
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+
+        <h2>🏫 My School</h2>
+
+        <p>Learn • Grow • Shine</p>
+
+        <p>
+            <a href="#home">Back to Top ↑</a>
+        </p>
+
+        <p>
+            &copy; 2026 My School.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
+
